@@ -8,7 +8,7 @@ export default defineConfig({
   base: "/monaco/",
   plugins: [(monacoEditorPlugin as any).default({})],
   build: {
-    outDir: "../../public/monaco",
+    outDir: "../../frontend/public/monaco",
     emptyOutDir: false,
   },
 });

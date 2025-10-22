@@ -9,11 +9,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "monaco-editor": "^0.54.0",
+    "monaco-themes": "^0.4.7"
+  },
+  "devDependencies": {
     "@types/node": "^24.9.1",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
-    "monaco-editor": "^0.54.0",
-    "monaco-themes": "^0.4.7",
     "typescript": "^5.9.3",
     "vite": "^7.1.11",
     "vite-plugin-monaco-editor": "^1.1.0",

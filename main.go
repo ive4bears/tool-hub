@@ -3,7 +3,6 @@ package main
 import (
 	"embed"
 	"log"
-	"net/http"
 
 	"github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/logger"
@@ -13,37 +12,8 @@ import (
 	"github.com/wailsapp/wails/v2/pkg/options/windows"
 )
 
-//go:embed all:public
+//go:embed all:frontend/public
 var assets embed.FS
-
-type fileLoader struct {
-	http.Handler
-}
-
-// func newFileLoader() *fileLoader {
-// 	return &fileLoader{}
-// }
-
-// // ServeHTTP serves files from 'frontend/dist' directory
-// func (h *fileLoader) ServeHTTP(res http.ResponseWriter, req *http.Request) {
-// 	var err error
-// 	fmt.Printf("request url: %s\n", req.URL)
-// 	requestedFilename := strings.TrimPrefix(req.URL.Path, "/")
-// 	if !strings.HasPrefix(requestedFilename, "monaco/") {
-// 		res.WriteHeader(http.StatusNotFound)
-// 		fmt.Fprintf(res, "File not found: %s", requestedFilename)
-// 		return
-// 	}
-// 	fmt.Println("Requesting file:", requestedFilename)
-// 	fileData, err := os.ReadFile(requestedFilename)
-// 	if err != nil {
-// 		res.WriteHeader(http.StatusBadRequest)
-// 		fmt.Fprintf(res, "Could not load file %s", requestedFilename)
-// 		return
-// 	}
-
-// 	res.Write(fileData)
-// }
 
 //go:embed build/appicon.png
 var icon []byte
@@ -91,7 +61,7 @@ func main() {
 		// Mac platform specific options
 		Mac: &mac.Options{
 			TitleBar: &mac.TitleBar{
-				TitlebarAppearsTransparent: false,
+				TitlebarAppearsTransparent: true,
 				HideTitle:                  false,
 				HideTitleBar:               false,
 				FullSizeContent:            false,
