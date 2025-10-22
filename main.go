@@ -3,6 +3,7 @@ package main
 import (
 	"embed"
 	"log"
+	"net/http"
 
 	"github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/logger"
@@ -12,8 +13,37 @@ import (
 	"github.com/wailsapp/wails/v2/pkg/options/windows"
 )
 
-//go:embed all:frontend/dist
+//go:embed all:public
 var assets embed.FS
+
+type fileLoader struct {
+	http.Handler
+}
+
+// func newFileLoader() *fileLoader {
+// 	return &fileLoader{}
+// }
+
+// // ServeHTTP serves files from 'frontend/dist' directory
+// func (h *fileLoader) ServeHTTP(res http.ResponseWriter, req *http.Request) {
+// 	var err error
+// 	fmt.Printf("request url: %s\n", req.URL)
+// 	requestedFilename := strings.TrimPrefix(req.URL.Path, "/")
+// 	if !strings.HasPrefix(requestedFilename, "monaco/") {
+// 		res.WriteHeader(http.StatusNotFound)
+// 		fmt.Fprintf(res, "File not found: %s", requestedFilename)
+// 		return
+// 	}
+// 	fmt.Println("Requesting file:", requestedFilename)
+// 	fileData, err := os.ReadFile(requestedFilename)
+// 	if err != nil {
+// 		res.WriteHeader(http.StatusBadRequest)
+// 		fmt.Fprintf(res, "Could not load file %s", requestedFilename)
+// 		return
+// 	}
+
+// 	res.Write(fileData)
+// }
 
 //go:embed build/appicon.png
 var icon []byte
@@ -29,25 +59,23 @@ func main() {
 		Height:            768,
 		MinWidth:          1024,
 		MinHeight:         768,
-		MaxWidth:          1280,
-		MaxHeight:         800,
 		DisableResize:     false,
 		Fullscreen:        false,
 		Frameless:         false,
 		StartHidden:       false,
 		HideWindowOnClose: false,
 		BackgroundColour:  &options.RGBA{R: 255, G: 255, B: 255, A: 255},
-		AssetServer:       &assetserver.Options{
+		AssetServer: &assetserver.Options{
 			Assets: assets,
 		},
-		Menu:              nil,
-		Logger:            nil,
-		LogLevel:          logger.DEBUG,
-		OnStartup:         app.startup,
-		OnDomReady:        app.domReady,
-		OnBeforeClose:     app.beforeClose,
-		OnShutdown:        app.shutdown,
-		WindowStartState:  options.Normal,
+		Menu:             nil,
+		Logger:           nil,
+		LogLevel:         logger.DEBUG,
+		OnStartup:        app.startup,
+		OnDomReady:       app.domReady,
+		OnBeforeClose:    app.beforeClose,
+		OnShutdown:       app.shutdown,
+		WindowStartState: options.Normal,
 		Bind: []interface{}{
 			app,
 		},
@@ -58,12 +86,12 @@ func main() {
 			DisableWindowIcon:    false,
 			// DisableFramelessWindowDecorations: false,
 			WebviewUserDataPath: "",
-			ZoomFactor: 1.0,
+			ZoomFactor:          1.0,
 		},
 		// Mac platform specific options
 		Mac: &mac.Options{
 			TitleBar: &mac.TitleBar{
-				TitlebarAppearsTransparent: true,
+				TitlebarAppearsTransparent: false,
 				HideTitle:                  false,
 				HideTitleBar:               false,
 				FullSizeContent:            false,
@@ -80,7 +108,6 @@ func main() {
 			},
 		},
 	})
-
 	if err != nil {
 		log.Fatal(err)
 	}

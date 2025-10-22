@@ -1,0 +1,17 @@
+{
+  "name": "tool-hub",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Tool Hub — frontend + packages monorepo",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.15.0",
+  "scripts": {
+    "bootstrap": "pnpm install",
+    "build:monaco": "pnpm -w -F monaco build",
+    "build:frontend": "pnpm -w -F frontend build",
+    "build": "pnpm -r run build",
+    "dev": "pnpm -w -F frontend dev"
+  }
+}

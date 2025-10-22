@@ -1,4 +1,5 @@
 build/bin
-frontend/dist
-frontend/node_modules
+public/*
+**/dist
+**/node_modules
 .DS_Store

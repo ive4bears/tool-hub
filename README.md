@@ -38,3 +38,15 @@ browser and connect to your application.
 ## Building
 
 To build a redistributable, production mode package, use `wails build`.
+
+## pnpm workspace
+
+This repository is set up as a pnpm workspace. It includes `frontend` and `packages/*`.
+
+Quick commands:
+
+```bash
+pnpm install
+pnpm -w -F frontend dev    # run frontend dev server
+pnpm -w -r run build        # run build in all workspace packages
+```
