@@ -1,6 +1,4 @@
 import { FC } from "react";
-// @ts-ignore
-import { initVimMode } from "monaco-vim";
 
 export const Editor: FC = () => {
   return (

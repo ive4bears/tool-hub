@@ -13,7 +13,7 @@ const __dirname = dirname(__filename);
 export default defineConfig({
   plugins: [react()],
   build: {
-    outDir: "../public",
+    outDir: "./public",
     emptyOutDir: false,
   },
   resolve: {

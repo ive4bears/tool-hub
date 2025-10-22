@@ -3,11 +3,13 @@
     "appicon",
     "assetserver",
     "Colour",
+    "Debugf",
     "Frameless",
     "Infof",
     "outputfilename",
     "Titlebar",
     "wailsapp",
-    "wailsjs"
+    "wailsjs",
+    "wouter"
   ]
 }
