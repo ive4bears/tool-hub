@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "monaco-editor": "^0.54.0",
-    "monaco-themes": "^0.4.7"
+    "monaco-themes": "^0.4.7",
+    "monaco-vim": "^0.4.2"
   },
   "devDependencies": {
     "@types/node": "^24.9.1",

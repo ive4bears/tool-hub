@@ -24,6 +24,24 @@
   </head>
   <body>
     <div id="root"></div>
+    <div id="vim-status"></div>
     <script type="module" src="/src/embed.ts"></script>
+    <style>
+      #root {
+        height: calc(100vh - 1.5rem);
+      }
+      #vim-status {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 1.5rem;
+        background: rgba(255, 255, 255, 0.9);
+        z-index: 1000;
+        pointer-events: none;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
+      }
+    </style>
   </body>
 </html>

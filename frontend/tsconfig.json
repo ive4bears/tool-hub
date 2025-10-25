@@ -21,11 +21,11 @@
     "noFallthroughCasesInSwitch": true,
 
     /* Path */
-    "rootDir": "src",
+    "rootDir": ".",
     "paths": {
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "wailsjs"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

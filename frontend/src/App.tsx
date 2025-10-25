@@ -81,12 +81,12 @@ const settings = [
 ].map((setting) => <Feature key={setting.name} {...setting} />);
 
 function App() {
-  const [location] = useLocation();
+  // const [location] = useLocation();
   return (
     <div className="w-full h-screen flex flex-col">
-      <div className="header h-6 flex pl-20">location: {location}</div>
+      {/* <div className="header h-6 flex pl-20">location: {location}</div> */}
       <div className="flex bg-zinc-200 flex-grow">
-        <div className="w-10 flex flex-col justify-between  border-r border-solid border-gray-400">
+        <div className="w-10 flex flex-col justify-between  border-r border-solid border-gray-400 z-20 bg-zinc-200">
           <div className=" text-center flex flex-col items-center pt-2 gap-2">
             {features}
           </div>
@@ -94,7 +94,7 @@ function App() {
             {settings}
           </div>
         </div>
-        <div className="flex-grow h-full p-2">
+        <div className="flex-grow h-full ">
           <Switch>
             <Route path="/" component={Home} />
             <Route path="/tools" component={Tool} />

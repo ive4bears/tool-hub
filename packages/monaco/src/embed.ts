@@ -1,6 +1,8 @@
 import * as monaco from "monaco-editor";
 // @ts-ignore
 import { parseTmTheme } from "monaco-themes";
+// @ts-ignore
+import { initVimMode } from "monaco-vim";
 
 const params = new Proxy<any>(new URLSearchParams(window.location.search), {
   get: (searchParams, prop) => searchParams.get(String(prop)),
@@ -21,7 +23,7 @@ const options: monaco.editor.IStandaloneEditorConstructionOptions = {
   lineNumbers: (params.lineNumbers as any) ?? "on",
   automaticLayout: true,
   minimap: {
-    enabled: params.minimap !== "false",
+    enabled: params.minimap === "true",
   },
 };
 
@@ -32,6 +34,8 @@ const editor = monaco.editor.create(
   document.getElementById("root") ?? document.body,
   options
 );
+
+const vimMode = initVimMode(editor, document.getElementById("vim-status")!);
 
 const getCustomThemeName = (theme: string | undefined) => {
   return theme && !builtinThemes.includes(theme) ? theme : undefined;
